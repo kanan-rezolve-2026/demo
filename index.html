@@ -1,1 +1,308 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eko-Eko Dissertation Presentation Guide</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#f8f8f6;color:#1a1a18;line-height:1.6;padding:1rem}
+.header{background:#3C3489;color:#fff;padding:1.25rem 1.5rem;border-radius:12px;margin-bottom:1.25rem}
+.header h1{font-size:18px;font-weight:600;margin-bottom:4px}
+.header p{font-size:13px;opacity:.8}
+.nav{display:flex;align-items:center;gap:10px;margin-bottom:1rem;flex-wrap:wrap}
+.nav button{padding:7px 16px;font-size:13px;border:1px solid #ccc;border-radius:8px;background:#fff;cursor:pointer;font-weight:500}
+.nav button:hover{background:#eee}
+.nav button.prev{background:#3C3489;color:#fff;border-color:#3C3489}
+.nav button.next{background:#0F6E56;color:#fff;border-color:#0F6E56}
+.counter{margin-left:auto;font-size:13px;color:#666;font-weight:500}
+.card{background:#fff;border:1px solid #e0dfd8;border-radius:12px;padding:1.25rem;margin-bottom:1rem}
+.slide-header{display:flex;align-items:center;gap:8px;margin-bottom:.5rem}
+.slide-num{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.05em}
+.time-badge{font-size:11px;padding:2px 8px;border-radius:99px;background:#FFF3D6;color:#855010;font-weight:600}
+.slide-title{font-size:17px;font-weight:600;color:#1a1a18;margin-bottom:.75rem;padding-bottom:.6rem;border-bottom:1px solid #e8e8e4}
+.section-label{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.05em;margin:.85rem 0 .35rem}
+.what-box{background:#F0F7FF;border-radius:8px;padding:.65rem .9rem;font-size:13.5px;color:#185FA5;margin-bottom:.5rem}
+.speak-box{font-size:14px;color:#1a1a18;line-height:1.7}
+.speak-box em{background:#FFFBF0;padding:0 2px;font-style:italic;color:#633806}
+.tip-box{background:#F6F6F2;border-radius:8px;padding:.55rem .85rem;font-size:13px;color:#444;margin-bottom:.35rem;border-left:3px solid #ccc}
+.tip-box::before{content:"Tip: ";font-weight:600;color:#0F6E56}
+.q-section{margin-top:.85rem}
+.q-item{border:1px solid #e8e8e4;border-radius:8px;margin-bottom:.5rem;overflow:hidden}
+.q-label{background:#EEEDFE;color:#3C3489;font-size:12.5px;font-weight:600;padding:.45rem .75rem;border-bottom:1px solid #d8d6f8}
+.q-label::before{content:"Q: "}
+.a-label{background:#fff;font-size:13px;color:#333;padding:.5rem .75rem;line-height:1.55}
+.a-label::before{content:"A: ";font-weight:600;color:#0F6E56}
+.bottom-nav{display:flex;gap:10px;margin-top:1rem}
+.bottom-nav button{flex:1;padding:9px;font-size:14px;border:1px solid #ccc;border-radius:8px;background:#fff;cursor:pointer;font-weight:500}
+.bottom-nav button:hover{background:#f0f0ec}
+.progress{height:4px;background:#e8e8e4;border-radius:4px;margin-bottom:1rem;overflow:hidden}
+.progress-fill{height:100%;background:#3C3489;border-radius:4px;transition:width .3s}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>Eko-Eko Dissertation — Slide-by-Slide Presentation Guide</h1>
+<p>24 slides · Counter-questions with model answers · Navigate with buttons below</p>
+</div>
+<div class="progress"><div class="progress-fill" id="prog" style="width:4.17%"></div></div>
+<div class="nav">
+<button class="prev" onclick="prevSlide()">← Prev</button>
+<button class="next" onclick="nextSlide()">Next →</button>
+<span class="counter" id="ctr">Slide 1 / 24</span>
+</div>
+<div id="content"></div>
+<div class="bottom-nav">
+<button onclick="prevSlide()">← Previous slide</button>
+<button onclick="nextSlide()">Next slide →</button>
+</div>
+
+<script>
+const slides=[
+{num:"Slide 1",title:"Title slide — Eko-Eko system introduction",time:"1 min",
+what:"Your opening. Sets who you are, what you built, at which institution, under whose supervision.",
+speak:`Start confident — don't read the title. Say:<br><em>"My dissertation is on Eko-Eko — a real-time conversational AI system that unifies voice and text interaction in a single pipeline. I built the agent service, which is the intelligence layer of the system, during my internship at Rezolve India."</em><br><br>Pause. Let it land. Then move on.`,
+tips:["Make eye contact when you say 'I built the agent service'","Don't read your name/roll number aloud — the panel can see it"],
+questions:[
+{q:"What is the main novelty of your system?",a:"The key novelty is the unified pipeline — voice and text handled in the same processing and agent layer with real-time interruption support. Existing systems treat these as separate subsystems."},
+{q:"Why is this a Big Data Analytics dissertation?",a:"Real-time multimodal streaming, multi-agent orchestration, and persistent state across conversations involve high-velocity structured data and scalable systems design — core to Big Data Analytics."},
+{q:"What is your specific contribution vs the team?",a:"I designed and implemented the agent service — BaseAgent reasoning, LangGraph workflows, the full prompt system, tool pipeline, and the real-time interruption framework."}
+]},
+{num:"Slide 2",title:"Problem statement",time:"2 min",
+what:"Three fragmentation problems + one design objective. The gap your system fills.",
+speak:`<em>"Current AI systems suffer from fragmentation. Voice systems can't reason. LLM systems can't speak. Tools and media services are bolted on loosely. Nobody has unified all three in a single real-time pipeline with low-latency streaming and interruption support."</em><br><br>Point to the objective box: <em>"Our goal was exactly that — one system integrating voice, reasoning, and tool execution."</em>`,
+tips:["Slow down on 'lack of real-time conversational reasoning' — that is your core argument","Three bullet points = your three problem pillars — come back to these in Q&A"],
+questions:[
+{q:"Why can't you just chain existing systems together?",a:"Chaining introduces latency, state loss at boundaries, and no support for interruption. A user can't interrupt mid-response in a chained system. Our unified pipeline handles this natively inside the same process."},
+{q:"Are there existing unified systems like Siri or Alexa?",a:"Siri and Alexa do voice + reasoning but are closed systems, prompt-driven, and don't support tool-augmented multi-agent reasoning with dynamic interruption and streaming. Academic work (Kaewtawee 2025) shows pipelines but with limited reasoning flexibility."},
+{q:"What specifically is low-latency streaming?",a:"Responses stream token by token as the LLM generates them — not waiting for the full answer. For voice, audio starts before the sentence is complete. This is what makes the interaction feel natural and human-like."}
+]},
+{num:"Slide 3",title:"Literature survey 1/3 — core AI capabilities",time:"2 min",
+what:"Three foundational papers: ReAct (2023), Toolformer (2023), Whisper (2022).",
+speak:`<em>"My system is grounded in three key ideas from literature. First, ReAct — interleaving thought, action, and observation, which is exactly how our BaseAgent's three-step agentic loop works. Second, Toolformer — letting the LLM decide when and how to call external tools, which is how our web search, media generation, and reaction tools are triggered. Third, Whisper — robust speech-to-text as the voice input layer. We use Azure STT which follows the same weak-supervision paradigm at production scale."</em>`,
+tips:["Always connect each paper back to your system — say 'which we implement as...'","Don't describe papers in isolation — the panel wants to know the relevance"],
+questions:[
+{q:"Your system uses Azure STT — why not Whisper directly?",a:"Azure STT provides lower latency streaming, enterprise-grade availability, and native integration with Pipecat. Whisper is the foundational research; Azure builds on the same paradigm at production scale with better real-time support."},
+{q:"How exactly does ReAct appear in your BaseAgent?",a:"In BaseAgent, the LLM reasons about whether to call a tool (thought), calls it (action), receives the output as a ToolMessage (observation), then decides to answer or loop again. MAX_STEPS=3 caps this loop — exactly the ReAct pattern."},
+{q:"Toolformer was about self-supervised tool learning — is that what you did?",a:"We use the core idea — LLM-invoked tools via function calling — not the self-supervised training method. Tools are bound using LangChain's bind_tools() which converts their docstrings into OpenAI function-calling format."}
+]},
+{num:"Slide 4",title:"Literature survey 2/3 — conversational systems",time:"2 min",
+what:"Three 2025 papers: Acikgoz (agent framework), Kaewtawee (voice agents), Sapkota (multi-party).",
+speak:`<em>"Moving to 2025 work. Acikgoz defines a Reasoning → Monitoring → Control architecture — we implement this in our Unified Processor which monitors incoming frames and controls interruptions. Kaewtawee shows a real-time STT→LLM→TTS pipeline — our voice pipeline — but their system is prompt-driven with no tool invocation during voice. Sapkota addresses multi-party contextual adaptation — our category and intent system serves a similar purpose for single-user domain adaptation."</em>`,
+tips:["The key contrast: Kaewtawee = prompt-driven. Ours = tool-augmented + interruptible — say this explicitly","Sapkota is the weakest connection — don't spend more than 20 seconds on it"],
+questions:[
+{q:"How is your system different from Kaewtawee's pipeline?",a:"Kaewtawee's system has no tool invocation during voice — just prompt-driven LLM. Our system runs a full agentic loop inside the pipeline — it can call web search, generate images, add reactions, all while streaming audio. Plus we support real-time interruption."},
+{q:"What is Acikgoz's monitoring concept — where does it appear?",a:"Their 'monitoring' maps to our process_frame() in the Unified Processor — it continuously watches for UserStartedSpeakingFrame, InterruptionFrame, and TranscriptionFrame events and responds dynamically to each."},
+{q:"Why are all three papers from 2025?",a:"This is a rapidly evolving field. 2025 literature reflects the current state of the art in real-time voice and agent systems. Earlier work didn't address real-time voice+reasoning integration in the way these do."}
+]},
+{num:"Slide 5",title:"Literature survey 3/3 — key observation",time:"1 min",
+what:"Synthesis: all prior work covers isolated capabilities. Your system unifies them.",
+speak:`<em>"The key observation from all the literature is this — every paper solves one piece. ReAct: reasoning. Toolformer: tools. Whisper: speech. Acikgoz: agents. No existing system puts all four together in a single, real-time, interruptible pipeline. That is the gap Eko-Eko fills."</em><br><br>Read the three design objectives quickly and move on.`,
+tips:["Under 60 seconds on this slide — it's a bridging slide","The three objectives at the bottom are your system's promises — you'll prove each one in later slides"],
+questions:[
+{q:"Is there any prior work that comes close to unifying all four?",a:"OpenAI's voice mode (GPT-4o) does voice+reasoning but is a closed commercial product. No published academic system unifies real-time voice, tool-augmented reasoning, and dynamic interruption in an open, extensible architecture."}
+]},
+{num:"Slide 6",title:"System overview — what Eko-Eko is",time:"1 min",
+what:"High-level: real-time multi-agent AI, voice + text, unified pipeline, architecture evolution.",
+speak:`<em>"Eko-Eko is a real-time multi-agent conversational AI. It supports both voice via WebRTC and text via SSE streaming. The key word is unified — the same agent reasoning layer serves both modalities. The system evolved from a single agent to the current dual-agent design, with a planned orchestrator for future work."</em>`,
+tips:["Three bullet points — say them slowly, one breath each","Architecture Evolution line previews future work — refer to it in slide 22"],
+questions:[
+{q:"What does 'unified' actually mean technically?",a:"One AgentState TypedDict, one LangGraph graph, one session store. Whether input comes from voice or text, it flows through the same BaseAgent reasoning loop and the same tool execution path. No separate voice brain and text brain."},
+{q:"What would the orchestrator do?",a:"Route to specialized domain agents — a Music expert, a Fitness expert — based on category. The OrchestratorAgent class is already stubbed in the codebase, just not wired into the graph yet."}
+]},
+{num:"Slide 7",title:"System overview — objective and architecture evolution",time:"1 min",
+what:"Real-time reasoning → WebRTC → low-latency streaming. Single → Base+Media → Orchestrator.",
+speak:`<em>"The objective is a pipeline where real-time reasoning feeds into WebRTC voice, producing low-latency streamed responses. We support tool-based execution — search, media generation, UI triggers — and persistent state across sessions via MongoDB. The evolution: single agent first, then MediaAgent separated for image and video, and next step is the orchestrator."</em>`,
+tips:["Mention MongoDB specifically — shows you thought about production concerns","The evolution line demonstrates architectural foresight — say it with confidence"],
+questions:[
+{q:"Why was MediaAgent separated from BaseAgent?",a:"Specialization and latency. Media generation needs different tools and a different system prompt. Keeping it in BaseAgent adds unnecessary overhead to every conversation. Separation keeps each agent focused and faster."},
+{q:"What does low-latency mean in actual numbers?",a:"Streaming starts within one to two tokens of LLM response — typically under 200ms from end of user speech to first audio byte. Silero VAD with 0.2s start detection also minimizes silence before the bot responds."}
+]},
+{num:"Slide 8",title:"Technology stack — agent service",time:"2 min",
+what:"Full stack: FastAPI, LangGraph, Azure OpenAI, MongoDB, Daily, Azure STT, ElevenLabs, SerpAPI, Freepik.",
+speak:`<em>"The agent service uses FastAPI for the API layer, LangGraph and LangChain for agent workflow, and Azure OpenAI as the LLM. State persists in MongoDB via LangGraph's MongoDBSaver. Voice transport: Daily WebRTC, Azure Speech for STT, ElevenLabs for TTS. External intelligence: SerpAPI for web search and Freepik for media generation."</em><br><br>Then say: <em>"Every technology choice was driven by a specific requirement — I can walk through any of these."</em>`,
+tips:["Be ready to justify each choice — the panel will pick one","Most likely questions: why LangGraph not plain LangChain, why MongoDB not PostgreSQL, why ElevenLabs"],
+questions:[
+{q:"Why LangGraph over plain LangChain?",a:"LangGraph provides a stateful graph with built-in checkpointing — conversation state persists across restarts. Plain LangChain has no native state graph. LangGraph also gives us astream_events for fine-grained token-level streaming control."},
+{q:"Why MongoDB for state instead of PostgreSQL?",a:"LangGraph's official checkpointer is MongoDBSaver. Also, agent state has a flexible schema — messages, tool results, metadata — which fits MongoDB's document model better than relational tables."},
+{q:"Why ElevenLabs over Azure TTS?",a:"ElevenLabs has significantly more natural voice quality for the Gen Z persona we designed. The multilingual v2 model handles multiple languages without switching. Azure TTS sounds more robotic by comparison."},
+{q:"Why Daily.co for WebRTC?",a:"Daily provides managed WebRTC infrastructure with a clean Python Pipecat integration, server-side room management, and bot tokens — we don't need to manage WebRTC signaling ourselves."}
+]},
+{num:"Slide 9",title:"Layered system architecture",time:"2 min",
+what:"5-layer text diagram: Client → Cloud Services → FastAPI → Voice Pipeline + Unified Processor → Agents.",
+speak:`<em>"The system has five layers. Client captures and sends input. Cloud services — Daily, Azure, Freepik — are external providers. FastAPI backend handles routing, session management, and validation. The voice pipeline with VAD, STT, and the Unified Processor is the real-time orchestration layer. At the bottom, agent layer: BaseAgent for reasoning, MediaAgent for generation."</em><br><br><em>"The Unified Processor is the single point of orchestration — input, output, state, and interruption all pass through it."</em>`,
+tips:["Point to each layer as you name it","The Unified Processor is your biggest contribution — emphasize it here"],
+questions:[
+{q:"Where exactly does interruption happen in this stack?",a:"In the Voice Pipeline + Unified Processor layer. VAD detects the user speaking, sends an InterruptionFrame, Unified Processor catches it in process_frame(), cancels the running LLM asyncio task, and starts a new invocation."},
+{q:"What happens if MongoDB connection fails?",a:"LangGraph falls back to an in-memory MemorySaver. The system keeps working but state is not persisted across restarts. We have try/except around MongoDB initialization that logs a warning and falls back gracefully."}
+]},
+{num:"Slide 10",title:"Full system architecture diagram",time:"3 min",
+what:"The big diagram — all layers from user input to user output. High-stakes slide.",
+speak:`<em>"This is the full system diagram. Let me walk top to bottom."</em><br><br><em>"User provides voice or text. Client layer — web app, WebRTC, RTVI control — captures input. Voice processing: WebRTC transport, RTVI processor, VAD, STT. These feed the Unified Processor — the central orchestration engine — which drives the agent layer: LangGraph workflow, BaseAgent for reasoning, MediaAgent for generation. Tool layer: web search, Freepik media, UI interaction tools. Backend API — Django REST — handles auth, chats, room sessions. Databases: PostgreSQL for users and chats, MongoDB for agent state, Azure Blob for media. Output: SSE for text streaming, ElevenLabs TTS for audio."</em>`,
+tips:["Practice this walk-through once before the presentation — know the exact path","If time is short: 'I'll cover the agent section specifically on the next slide'"],
+questions:[
+{q:"Why two separate backends — FastAPI and Django?",a:"Django handles user data, auth, and chat persistence — classic synchronous REST CRUD. FastAPI handles the agent service — async streaming, WebRTC, real-time events. Mixing heavy async streaming into Django's synchronous model would be messy. Separation keeps concerns clean."},
+{q:"How does the text streaming path work technically?",a:"Client POSTs to FastAPI's /chat endpoint. FastAPI calls stream_agent_response() which uses LangGraph's astream_events. Each on_chat_model_stream event is formatted as an SSE data message and sent to the client immediately. Client renders tokens as they arrive."},
+{q:"What is in the Output Layer?",a:"Two things: SSE for text streaming to the browser, and ElevenLabs TTS for audio. For voice sessions, tokens are pushed to ElevenLabs which synthesizes audio and sends it back through Daily's WebRTC transport."}
+]},
+{num:"Slide 11",title:"Agent side architecture diagram",time:"3 min",
+what:"Your most important technical slide. Deep-dive into the agent-only layers.",
+speak:`<em>"This is the agent-side architecture. Let me trace the complete flow."</em><br><br><em>"Input arrives at the Client Interface Layer — voice via WebRTC or text directly. The Voice Processing Pipeline — which I call the critical layer — contains Daily WebRTC transport, the Custom RTVI Processor for real-time control, Silero VAD for speech detection, and Azure STT for transcription."</em><br><br><em>"The Unified Processor sits at the center. It handles input normalization, triggers LangGraph workflows, invokes tools, manages streaming, and maintains session state — all simultaneously."</em><br><br><em>"Below it: BaseAgent for core reasoning — intent understanding, planning, tool orchestration — and MediaAgent for image, video, and image editing. BaseAgent delegates to MediaAgent via the route_to_generation_agent tool."</em><br><br><em>"Tool layer: web search for external knowledge, Freepik for media, and UI tools — follow-up nudges and emoji reactions. Output via SSE and ElevenLabs. State layer at the bottom: MongoDB and AgentState schema shared across all agents."</em>`,
+tips:["This is your most technically dense slide — don't rush","'BaseAgent → MediaAgent (Route Tool / delegation)' is a key design point — say it explicitly","Practice this slide three times before the presentation"],
+questions:[
+{q:"What exactly is the Unified Processor — is it the same as LangGraph?",a:"No. LangGraph is the graph execution engine. The Unified Processor — UnifiedLanggraphProcessor class — wraps LangGraph and adds: interruption handling, RTVI message routing, streaming token forwarding, session state management, and post-invoke finalization. LangGraph alone cannot do any of that."},
+{q:"How does the RTVI control plane work technically?",a:"RTVI messages are WebRTC data channel messages from the frontend. CustomRTVIProcessor receives them and routes: set-response-mode updates init_state['mode'], set-intent validates and updates intent, set-category validates the hierarchy and sets all three levels. Changes take effect on the next agent invocation."},
+{q:"What is AgentState?",a:"A TypedDict that flows through the LangGraph graph. It carries: messages list, mode (crisp/deep_dive), intent, category/subcategory/detail, use_web_search flag, and session_id. Every node reads from and writes to this shared state."},
+{q:"Why is the State Layer at the bottom?",a:"State is the persistent substrate the whole system reads and writes — not a step in the flow. It's shared across agents, updated by LLM, tools, and RTVI, and persisted to MongoDB. Placing it at the bottom shows it underlies everything."}
+]},
+{num:"Slide 12",title:"Voice pipeline — real-time processing",time:"2 min",
+what:"Pipeline flow: Daily → RTVI → Silero VAD → Azure STT → Unified Processor.",
+speak:`<em>"The voice pipeline is: Daily WebRTC transport receives raw audio. RTVI handles control signals from the frontend. Silero VAD detects speech start and end — confidence threshold 0.7, start after 0.2 seconds of voice, stop after 1.2 seconds of silence. Azure STT converts detected speech to a TranscriptionFrame. The Unified Processor then orchestrates agents, triggers tools, and manages streaming."</em><br><br><em>"Key function of each: Daily is the audio highway. RTVI is the real-time control channel. VAD is the speech gatekeeper. STT is the translator. Unified Processor is the brain."</em>`,
+tips:["The VAD numbers — 0.7, 0.2, 1.2 — show you know the configuration deeply. Say them.","ElevenLabs TTS completes the circle on the output side — mention it"],
+questions:[
+{q:"What happens with VAD false positives on background noise?",a:"Confidence threshold 0.7 and minimum volume 0.6 filter most false positives. If a false TranscriptionFrame still gets through with empty text, our code checks if frame.text is non-empty before invoking the agent — a final guard."},
+{q:"Why Silero VAD specifically?",a:"Silero is a lightweight neural VAD that runs locally — no API call, no network latency. It integrates natively with Pipecat's DailyParams and significantly outperforms energy-based VAD for detecting natural speech boundaries."},
+{q:"What is the exact pipeline order in code?",a:"transport.input() → CustomRTVIProcessor → AzureSTTService → UnifiedLanggraphProcessor → ElevenLabsTTSService → transport.output(). Six stages in order inside a Pipecat Pipeline object."}
+]},
+{num:"Slide 13",title:"Unified processor — core orchestrator",time:"2 min",
+what:"Input → Agents → Tools → Streaming → State. Acts as the true runtime orchestrator beyond LangGraph.",
+speak:`<em>"The Unified Processor is the most important component I built. It does five things simultaneously: normalizes STT and text input, executes LangGraph workflows via astream_events, triggers and handles tool results, manages token and audio streaming, and maintains session state in MongoDB."</em><br><br><em>"Critically — it supports real-time interruption. When the user starts speaking mid-response, it cancels the running LLM asyncio task within one second, sends an 'interrupted' RTVI signal to the frontend, and starts a fresh invocation for the new input. This is something LangGraph alone cannot do."</em>`,
+tips:["The last sentence on the slide — 'Acts as the true runtime orchestrator beyond LangGraph' — say it confidently","Be precise: LangGraph handles graph logic, Unified Processor handles everything around the graph"],
+questions:[
+{q:"Why can't LangGraph handle interruption itself?",a:"LangGraph's astream_events is a Python async generator — you can't cancel it from outside unless you cancel the asyncio Task running it. The Unified Processor holds _current_invoke_task and calls .cancel() on it. LangGraph has no concept of external interruption."},
+{q:"How does it maintain session state?",a:"It reads and writes to the global running_sessions dictionary keyed by session_id. After each invoke, _finalise_session() appends messages to conversation_history and calls persist_assistant_response() to POST to the Django API."},
+{q:"What is process_frame() responsible for?",a:"It's the Pipecat frame handler. It receives all frames from upstream processors and specifically handles: UserStartedSpeakingFrame (triggers interruption), TranscriptionFrame (triggers _ainvoke), InterruptionFrame (cancels task), and passes everything else downstream."}
+]},
+{num:"Slide 14",title:"Agent layer — multi-agent workflow",time:"2 min",
+what:"User Input → BaseAgent (reasoning) → Routing → MediaAgent (generation).",
+speak:`<em>"The agent layer has two agents. BaseAgent is the core reasoning engine — intent understanding, planning, tool orchestration. It runs up to three steps: build prompt, call LLM, execute tools, then loop or return."</em><br><br><em>"When the user wants images or video, BaseAgent calls route_to_generation_agent, which delegates to MediaAgent. MediaAgent has its own LLM bound to three media tools: generate_image via Freepik Flux Dev, generate_video via Seedance 1080p, and edit_image via Seedream 4."</em><br><br><em>"Key idea: multi-agent enables modular, scalable execution. Each agent is specialized. Routing is dynamic — BaseAgent decides when to delegate based on user intent."</em>`,
+tips:["MAX_STEPS=3 for BaseAgent, MAX_STEPS=2 for MediaAgent — knowing these numbers shows depth","The routing tool is where the agents connect — describe it precisely"],
+questions:[
+{q:"What stops BaseAgent from calling MediaAgent unnecessarily?",a:"The route_to_generation_agent tool has a precise docstring instructing the LLM to only call it when the user explicitly wants to CREATE images or videos. Text questions never trigger it — the LLM follows the docstring guidance."},
+{q:"What happens if MediaAgent fails?",a:"The tool returns an error string. BaseAgent receives it as a ToolMessage, and on the next LLM step, it generates a natural language error response to the user explaining that media generation failed."},
+{q:"Why does MediaAgent have its own LLM instance?",a:"It needs a different system prompt (MEDIA_SYSTEM_PROMPT) and different tools. Sharing BaseAgent's LLM would require switching context each time, which is messy. Separate instances keep each agent clean and independently configurable."}
+]},
+{num:"Slide 15",title:"Tool system — LLM + execution",time:"2 min",
+what:"LLM (Intent) → Tool Call → Unified Processor → Tool Execution → Response. Four tools.",
+speak:`<em>"Tool execution: the LLM decides which tool to call based on intent. It emits tool_calls in the response. BaseAgent's _execute_tools() picks this up, runs all tools in parallel using asyncio.gather(), and injects results back as ToolMessages. The LLM uses these in the next step."</em><br><br><em>"Four tools: web_search for external knowledge, favourite_message for emoji reactions, show_followup_nudge for the Yes/Maybe Later UI, and route_to_generation_agent to delegate to MediaAgent. All are LangChain @tool decorated functions the LLM can invoke by name."</em>`,
+tips:["asyncio.gather means tools run in parallel — this is a key technical detail, say it","Tools are state-aware — favourite and nudge tools receive session_id injected by the agent"],
+questions:[
+{q:"How does the LLM know which tool to call?",a:"Each tool has a detailed docstring describing exactly when to use it with examples. LangChain's bind_tools() converts these into OpenAI function-calling format. The LLM selects tools based on these descriptions and the user's message."},
+{q:"What if two tools are called at the same time?",a:"asyncio.gather runs them in parallel. Each returns a result independently. Both ToolMessages are appended and the LLM synthesizes a combined response in the next step."},
+{q:"Can the user trigger a tool directly?",a:"No — tools are always LLM-invoked. The only exception is the RTVI control plane — set-response-mode, set-intent — which bypasses the LLM and directly updates state. Regular user messages always go through LLM reasoning first."}
+]},
+{num:"Slide 16",title:"State and streaming — runtime",time:"2 min",
+what:"State in MongoDB, token-level streaming, updates from LLM + tools + RTVI.",
+speak:`<em>"State works at two levels. AgentState TypedDict flows through each LangGraph invocation — short-term, per-invoke state carrying messages, mode, intent, and session metadata."</em><br><br><em>"Long-term state lives in MongoDB via MongoDBSaver, keyed by thread_id which equals chat_id from Django. If the server restarts, the agent picks up conversation history exactly where it left off."</em><br><br><em>"Streaming is token-level. on_chat_model_stream fires for every token. We forward each token as a TextFrame to the TTS pipeline and as an RTVI message to the frontend. The user sees and hears the response growing in real time."</em>`,
+tips:["The thread_id = chat_id link connects agent state to the backend database — explain it clearly","Token-level vs sentence-level streaming is a deliberate design choice — justify it"],
+questions:[
+{q:"Why stream at token level rather than sentence level?",a:"Token streaming gives lowest perceived latency. The user sees the first word within milliseconds of the LLM starting. Sentence-level streaming requires buffering, adding one to three seconds of delay before anything appears."},
+{q:"How is state shared between BaseAgent and MediaAgent?",a:"BaseAgent passes its request to MediaAgent as a string. MediaAgent runs independently and returns a string result. They don't share AgentState directly — MediaAgent is a pure function called by a tool."},
+{q:"What is in running_sessions that isn't in MongoDB?",a:"Live bot asyncio Task reference, BOT_PROCESSORS registry entry, pending_assistant_message_id, and messages_by_id for in-flight message tracking. These are runtime objects that can't be serialized to MongoDB."}
+]},
+{num:"Slide 17",title:"Interaction flow — voice + text + interruption",time:"2 min",
+what:"Full flow from user input through pipeline to output. Interruption path explicitly shown.",
+speak:`<em>"Voice flow: user speaks → Daily captures audio → Silero VAD detects speech → Azure STT produces TranscriptionFrame → Unified Processor invokes the agent → streaming response through ElevenLabs TTS → audio plays back."</em><br><br><em>"Text flow: user types → POST to FastAPI → stream_agent_response → SSE stream to browser."</em><br><br><em>"Interruption path: new input arrives mid-response — voice or text — system sends InterruptionFrame, cancels current LLM task within one second, sends 'interrupted' RTVI event to stop audio playback, immediately starts new invocation for the new input. Session state is maintained throughout."</em>`,
+tips:["The interruption flow is your showstopper feature — describe it slowly and clearly","Mention _is_interrupted flag — prevents the cancelled task continuing even if Python delays the actual CancelledError"],
+questions:[
+{q:"What happens to the half-generated response when interrupted?",a:"pending_assistant_message_id is popped from the session, partial content is discarded, and 'interrupted' RTVI message tells the frontend to clear what it was showing. The conversation history is not updated — the interrupted response never gets persisted."},
+{q:"Is interruption truly real-time or is there a noticeable delay?",a:"asyncio.wait_for(task, timeout=1s) gives one second maximum. In practice it cancels within milliseconds since the LLM API call raises CancelledError immediately. ElevenLabs audio also stops because LLMFullResponseEndFrame is pushed downstream."},
+{q:"How does the text path support interruption?",a:"In text mode, interruption comes from the user sending a new request or from an explicit API call. The streaming_service uses astream_events which can be cancelled by closing the SSE connection or cancelling the server-side task."}
+]},
+{num:"Slide 18",title:"RTVI control plane — real-time control",time:"2 min",
+what:"User Actions → RTVI → AgentState → Unified Processor. Four control capabilities.",
+speak:`<em>"RTVI — the Real Time Voice Interaction protocol — is our real-time control channel. The frontend sends structured messages over WebRTC's data channel. Our CustomRTVIProcessor receives and routes them to the Unified Processor."</em><br><br><em>"Four capabilities: mode control switches crisp/deep_dive without restarting the session. Intent update changes how the LLM frames responses. Category control sets the topic domain with hierarchical subcategory and detail. Regeneration replays the last answer in the new mode — switching to deep_dive auto-regenerates the last response in full detail."</em><br><br><em>"Critical point: RTVI updates AgentState directly — not via prompts. Changes take effect on the very next token."</em>`,
+tips:["'Updates AgentState not prompts' is technically significant — a panel member will appreciate this","Also mention followup-click — the Yes/Maybe Later button sends RTVI and triggers a full _ainvoke"],
+questions:[
+{q:"What RTVI messages does the system support?",a:"Six inbound: set-response-mode, set-intent, set-category, reply-to-message, set-uploaded-image, followup-click, custom-input, and interrupt. Outbound: response_id, token, interrupted, followup_nudge, reaction, media, web_search_status."},
+{q:"Why use WebRTC data channel for control rather than REST API?",a:"WebRTC data channel is already open for the voice session. Using it avoids an extra HTTP round trip and keeps latency to milliseconds. REST endpoints exist as fallbacks for programmatic control outside active voice sessions."},
+{q:"What happens if set-category is called with an invalid category?",a:"validate_category_subcategory() is called inside set_category(). If it fails, a ValueError is raised, logged, and the state is not updated — the existing category remains unchanged. No crash, no visible error to the user."}
+]},
+{num:"Slide 19",title:"Key architectural decisions",time:"2 min",
+what:"Six decisions: multi-agent, unified processor, MongoDB, tool-driven, voice-first, MediaAgent separation.",
+speak:`<em>"Every architectural decision was deliberate. Multi-agent: modular and scalable — adding a new domain agent doesn't touch existing code. Unified Processor: all orchestration in one place — no distributed state issues. MongoDB: persistent LangGraph state with flexible schema. Tool-driven execution: LLM decides at runtime what it needs — no hardcoded logic. Voice-first: real-time with interruption from day one. MediaAgent separation: media generation without slowing text responses."</em><br><br><em>"Common theme: every decision reduces coupling and increases flexibility."</em>`,
+tips:["This is a judgment slide — show you understand the WHY behind each decision","If challenged 'why not X instead?' — have a counter-argument ready for each choice"],
+questions:[
+{q:"What would you change if designing this from scratch?",a:"Add structured output validation for tool results earlier. Currently if Freepik returns an unexpected schema it can cause silent failures. A Pydantic model for each tool's output would catch this at the boundary."},
+{q:"Why centralized Unified Processor rather than distributed agent coordination?",a:"Distributed coordination adds message-passing complexity and makes interruption nearly impossible — you'd need to broadcast cancellation to multiple running components. Centralization makes interruption trivial: one cancel() call on one task."},
+{q:"What are the scalability limits of in-memory running_sessions?",a:"It's per-process memory — doesn't scale horizontally across multiple FastAPI instances. For production scale, running_sessions would move to Redis. This is a known limitation we'd address in the next phase."}
+]},
+{num:"Slide 20",title:"My contribution 1/2 — BaseAgent and LangGraph",time:"2 min",
+what:"Personal scope: Agent Service. Core contributions: BaseAgent reasoning, intent+mode responses, LangGraph workflows.",
+speak:`<em>"My specific contribution is the entire agent service. Within the full system — frontend, backend, agent — I owned the agent layer."</em><br><br><em>"Concretely: I extended BaseAgent with reasoning and planning — the three-step agentic loop, MAX_STEPS cap, parallel tool execution with asyncio.gather. I designed the intent-aware and mode-adaptive response system — Crisp and Deep Dive prompts with specific rules about format, length, and voice suitability. And I integrated LangGraph workflows including the MongoDB checkpointer for persistent state."</em>`,
+tips:["Be specific about what you personally wrote — don't be vague","Prompt design is a real contribution — mention the knowledge cutoff policy and fact-vs-guessing rules if asked"],
+questions:[
+{q:"What was the hardest part of building the BaseAgent?",a:"Designing the prompt system so the LLM reliably calls tools in the right situations. The show_followup_nudge tool in particular required very precise instructions — it must only fire when the response ends with a strict yes/no question, not an open-ended one."},
+{q:"How did you design the Crisp vs Deep Dive modes?",a:"Crisp: 3-5 sentences, spoken-style, no markdown except hyperlinks, redirects requests for detail to Deep Dive. Deep Dive: 2-4 paragraphs, rich markdown with headers, tables, bold, GPT-style layout. Both have voice-first writing rules — no punctuation narration, short sentences."},
+{q:"What does intent-aware mean in practice?",a:"The intent — curious, learn, compare, plan, create — shapes the system prompt. Compare forces the LLM to use a markdown table. Plan structures responses as step sequences. Intent also maps to purpose_mode in Django: curious/learn → Curious, compare → Compare, plan → Plan."}
+]},
+{num:"Slide 21",title:"My contribution 2/2 — tool pipeline and interruption",time:"2 min",
+what:"Tool invocation pipeline, multi-agent routing, Unified Processor integration, interruption framework.",
+speak:`<em>"My second contribution area covers four things."</em><br><br><em>"First, the tool pipeline — I designed all four tools: web search, favourite reactions, follow-up nudge, and generation routing. Each has precise docstrings guiding the LLM exactly when to call it."</em><br><br><em>"Second, multi-agent routing — the route_to_generation_agent tool and MediaAgent integration with Freepik's image, video, and edit APIs."</em><br><br><em>"Third, Unified Processor integration — wiring the LangGraph processor into Pipecat, handling all frame types, managing RTVI bidirectional communication."</em><br><br><em>"Fourth and most technically challenging — the real-time interruption framework. Three triggers, asyncio task cancellation within one second, session state cleanup, immediate fresh invocation. Works for both voice and text."</em>`,
+tips:["The interruption framework is your headline contribution — make it sound hard because it is hard","Say 'asyncio task cancellation' specifically — it shows you understand Python's async model"],
+questions:[
+{q:"How did you implement the follow-up nudge feature end to end?",a:"LLM calls show_followup_nudge when response ends with a yes/no question. on_tool_start fires, sending followup_nudge RTVI to the frontend with style: yes_maybe_later. Frontend shows Yes/Maybe Later buttons. User clicks → followup-click RTVI → set_reply_context → TranscriptionFrame 'Yes' or 'Maybe later' → full _ainvoke cycle."},
+{q:"What is the reply context system?",a:"_pending_reply_context stores {message_id, text_selection}. When set, the next _ainvoke() prepends [Replying to: 'selection'] to enhanced_text so the LLM knows what it's responding to. Consumed once and cleared — single use per reply."},
+{q:"What was the biggest debugging challenge?",a:"The asyncio task cancellation. Initially cancelled tasks would sometimes emit a few more tokens before stopping. Fix: the _is_interrupted flag — set it immediately on cancel, check it at the start of _ainvoke so even if Python delays the CancelledError, the new invocation is blocked until the old one is truly done."}
+]},
+{num:"Slide 22",title:"Summary and future work",time:"2 min",
+what:"System recap. Future: orchestrator, parallel execution, advanced routing, pre-prompted media.",
+speak:`<em>"To summarize: Eko-Eko is a real-time multi-agent conversational AI unifying voice and text through a single Unified Processor. Core capabilities: multi-agent reasoning with BaseAgent and MediaAgent, tool-integrated responses — search and media — and real-time streaming with interruption support."</em><br><br><em>"Future work: activate the Orchestrator for domain-based agent routing — the class is already in the codebase, just not wired. Add parallel agent execution. Build advanced routing strategies. And pre-prompted media suggestions — the system proactively suggests images or videos based on conversation context."</em>`,
+tips:["End confidently — it shows the system is designed for growth","Mention OrchestratorAgent stub — shows you already planned the next step in the code"],
+questions:[
+{q:"What is the most important future work?",a:"The Orchestrator. Currently BaseAgent handles everything. As the system adds more domains — Music expert, Travel expert — a routing layer is essential. The groundwork is already laid in the codebase."},
+{q:"How would parallel execution work?",a:"Multiple agents running on different asyncio tasks, each streaming partial results that the Unified Processor interleaves. Requires a merge strategy and careful state management to avoid race conditions on conversation_history."},
+{q:"What metrics would you use to evaluate the system?",a:"Latency to first token, interruption accuracy rate, tool invocation precision — did the right tool fire — and user satisfaction via reaction rates: favourites and thumbs up as proxy signals for response quality."}
+]},
+{num:"Slide 23",title:"References",time:"30 sec",
+what:"Six papers. Don't read them. They're there for credibility.",
+speak:`<em>"My literature survey draws on six key papers — ReAct, Toolformer, and Whisper as foundational work, and three 2025 papers on conversational agents, voice pipelines, and multi-agent systems. Full citations in the dissertation."</em><br><br>Stop there. Don't read the URLs.`,
+tips:["30 seconds maximum on this slide","Know the core idea and system connection for each paper — not just the citation"],
+questions:[
+{q:"Which paper most directly influenced your system?",a:"Kaewtawee et al. (2025) — it defined the STT→LLM→TTS real-time pipeline we build on. But where they stop at prompt-driven LLMs, we extend with LangGraph's stateful tool-augmented reasoning and the interruption framework."},
+{q:"ReAct is from 2023 — isn't it outdated?",a:"ReAct's core pattern — thought, action, observation — remains the dominant paradigm for agentic LLMs. LangGraph's graph execution is essentially a structured implementation of this loop. Foundational, not outdated."}
+]},
+{num:"Slide 24",title:"Thank you — Q&A",time:"Open",
+what:"Final slide. Questions from the panel.",
+speak:`<em>"Thank you. I'm happy to take questions."</em><br><br>Then stand still and wait. Don't fill silence. Let the panel formulate their question.`,
+tips:["If you don't know something — say 'That's a great point, I'd need to investigate that further' — never guess","If a question is unclear — say 'Could you clarify what you mean by X?' — shows analytical thinking","Keep answers to 60-90 seconds — don't ramble"],
+questions:[
+{q:"What is the most technically challenging part?",a:"The real-time interruption framework. Cancelling an asyncio task running an LLM streaming call, cleaning up session state consistently, and immediately starting a new invocation — all within one second — required careful async design and several debugging iterations."},
+{q:"Is this system production ready?",a:"The agent service is production-capable for single-server deployment. The main limitation is the in-memory session store which doesn't scale horizontally. Moving to Redis would make it production-ready for multi-instance deployments."},
+{q:"What would you do differently?",a:"Add integration tests for the interruption path earlier. It's hard to unit test async task cancellation — we tested it manually. Automated tests with simulated interruption frames would have caught edge cases faster."},
+{q:"How does the system handle very long conversations?",a:"LangGraph's MongoDB checkpointer stores full message history. Long conversations accumulate in the messages list passed to the LLM. For very long conversations, a summarization step before the system prompt would be needed to stay within context window limits."}
+]}
+];
+
+let idx=0;
+function render(){
+const s=slides[idx];
+document.getElementById('ctr').textContent=`Slide ${idx+1} / ${slides.length}`;
+document.getElementById('prog').style.width=`${((idx+1)/slides.length)*100}%`;
+const qs=s.questions.map(q=>`<div class="q-item"><div class="q-label">${q.q}</div><div class="a-label">${q.a}</div></div>`).join('');
+const tips=s.tips.map(t=>`<div class="tip-box">${t}</div>`).join('');
+document.getElementById('content').innerHTML=`
+<div class="card">
+<div class="slide-header">
+<div class="slide-num">${s.num} of 24</div>
+<span class="time-badge">Time: ${s.time}</span>
+</div>
+<div class="slide-title">${s.title}</div>
+<div class="section-label">What this slide covers</div>
+<div class="what-box">${s.what}</div>
+<div class="section-label">What to say</div>
+<div class="speak-box">${s.speak}</div>
+<div class="section-label">Delivery tips</div>
+${tips}
+<div class="section-label">Counter-questions from the panel (with model answers)</div>
+${qs}
+</div>`;
+window.scrollTo(0,0);
+}
+function nextSlide(){if(idx<slides.length-1){idx++;render();}}
+function prevSlide(){if(idx>0){idx--;render();}}
+render();
+</script>
+</body>
+</html>
